@@ -14,11 +14,8 @@ class Channel:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
         self.channel_id = channel_id
 
-    def json_printer(self, print_task: dict) -> None:
-        """Выводит в консоль информацию о канале."""
-        print(json.dumps(print_task, indent=2, ensure_ascii=False))
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         channel = youtube.channels().list(id=self.channel_id, part='snippet,statistics').execute()
-        return self.json_printer(channel)
+        return json.dumps(channel, indent=4, ensure_ascii=False) 
